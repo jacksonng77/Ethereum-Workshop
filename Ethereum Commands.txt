@@ -122,15 +122,23 @@ NOTE: gas is around 1378200 to execute this contracts
 
 cd ..
 sudo pico truffle.js
+
+add the following:
+gas:4700000,
+from:"<your address>"
+
+
 sudo truffle console
 web3.eth.syncing
 compile
-web3.personal.unlockAccount('0x722536754b4505d9370a9a5eccc00fe3c8c6362b', 'verystrongpassword', 15000)
-web3.eth.getBalance('0x722536754b4505d9370a9a5eccc00fe3c8c6362b')
+web3.personal.newAccount('verystrongpassword')
+web3.personal.unlockAccount('0x02d3c00b2680a12936ad4a2cf9d8729525519e1b', 'verystrongpassword', 15000)
+web3.eth.getBalance('0x02d3c00b2680a12936ad4a2cf9d8729525519e1b')
 .exit
 sudo pico truffle.js
-from:"0x722536754b4505d9370a9a5eccc00fe3c8c6362b"
+from:"0x02d3c00b2680a12936ad4a2cf9d8729525519e1b"
 sudo truffle console
+compile
 migrate --reset
 
 Instruction 11
