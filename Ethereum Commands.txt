@@ -1,0 +1,149 @@
+Instruction 1
+
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo apt-get update
+sudo apt-get install build-essential curl git m4 ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev zlib1g-dev
+sudo apt-get install build-essential checkinstall
+sudo apt-get install apache2
+
+Instruction 2
+
+sudo add-apt-repository -y ppa:ethereum/ethereum
+sudo apt-get update
+sudo apt-get install ethereum
+sudo npm install -g truffle
+
+Instruction 3
+
+sudo apt-get update && sudo apt-get install screen -y
+cd /home/dragontigerdoor
+sudo pico geth.sh
+
+If you are connecting to ropsten
+--------------------------------
+#!/usr/bin/env bash
+echo "Geth at work!"
+screen -dmS geth geth --testnet --syncmode "light" --rpc --rpcapi db,eth,net,web3,personal,admin --cache=1024  --rpcport 8545 --rpcaddr 0.0.0.0 --rpccorsdomain "*"
+
+if you are connecting to rinkeby
+--------------------------------
+#!/usr/bin/env bash
+echo "Geth at work!"
+screen -dmS geth geth --rinkeby --syncmode "light" --rpc --rpcapi db,eth,net,web3,personal,admin --cache=1024  --rpcport 8545 --rpcaddr 0.0.0.0 --rpccorsdomain "*"
+
+sudo chmod +x geth.sh
+bash geth.sh
+screen -x geth
+
+Instruction 4
+
+geth attach http://35.196.75.192:8545
+web3.eth.syncing
+net.peerCount
+admin
+
+Instruction 5
+
+if you are connecting to ropsten
+--------------------------------
+cd ~/.ethereum/testnet/geth
+rm -r lightchaindata
+
+if you are connecting to rinkeby
+--------------------------------
+cd ~/.ethereum/rinkeby/geth
+rm -r chaindata
+
+geth removedb
+cd /home/dragontigerdoor
+
+Instruction 6
+
+If you are connecting to ropsten
+--------------------------------
+admin.addPeer("enode://1d1a996a7cc0398e551441d646a2490157390e6efcaed2eb4745df1600706d1eab8d8eb4e6aec5b7fcffb46f468edc9b5366a01e214fd46cba28a3ce08d25431@136.243.41.67:30304");
+
+admin.addPeer("enode://30b7ab30a01c124a6cceca36863ece12c4f5fa68e3ba9b0b51407ccc002eeed3b3102d20a88f1c1d3c3154e2449317b8ef95090e77b312d5cc39354f86d5d606@52.176.7.10:30303");
+
+admin.addPeer("enode://af34d7c451ffd99a5ff81bc4bac72ef4b033590875959b046aaa23e4d35195695dabaa46731d8bbe857f7202e6517d164e340c0df14ea0f04fe065f0e3e48d72@52.208.46.161:30311");
+
+admin.addPeer("enode://7fdf6a0dd718d501852195df3d637bd35ece6355fe9e7cbc4bcc9996e24ddc9e39bc3afa58e6b62e011f5e0c0b2454f67c47e6c95e33a7d4dd12bf0df187aa26@35.165.124.179:34926");
+
+admin.addPeer("enode://a6ac2ad48d432fbf03550ec0c8c89e020b5e09f9d63761c88449f21305379c94533a29377ca4068b064fe1204d3e731256fd7b532aaa81c45113a784bcdd2bc8@47.94.57.33:30303");
+
+admin.addPeer("enode://48db81487f2aeb0421d15b00c7e41d9a1b5e5cb8fb662da149437febb5cfd03ade262c6362b100d0ad93547f3f15e8d29f0c4a49e0a9cc2164568c23d159ab5f@23.92.222.158:30304");
+
+admin.addPeer("enode://af34d7c451ffd99a5ff81bc4bac72ef4b033590875959b046aaa23e4d35195695dabaa46731d8bbe857f7202e6517d164e340c0df14ea0f04fe065f0e3e48d72@52.208.46.161:30311");
+
+if you are connecting to rinkeby
+---------------------------------
+admin.addPeer("enode://1087d50009c5aa135b663cc0312453300209444344f3d8e246c7f9a892f45ce5cea34d10aeac3f7014ca909e463995e3ef1a0259724c7c9cb6d5589d9d0fa1b6@176.36.164.194:30303");
+
+admin.addPeer("enode://343149e4feefa15d882d9fe4ac7d88f885bd05ebb735e547f12e12080a9fa07c8014ca6fd7f373123488102fe5e34111f8509cf0b7de3f5b44339c9f25e87cb8@52.3.158.184:30303");
+
+admin.addPeer("enode://a24ac7c5484ef4ed0c5eb2d36620ba4e4aa13b8c84684e1b4aab0cebea2ae45cb4d375b77eab56516d34bfbd3c1a833fc51296ff084b770b94fb9028c4d25ccf@52.169.42.101:30303");
+
+admin.addPeer("enode://be05ecbeec37cead85ac4d2189e3b501872e744922e3bb795599b9826d1bf2dc9a55b82ad98b0f4619102620df193a2dcd42fb39a4207ab744e3128b04e50492@165.227.23.52:30303");
+
+admin.addPeer("enode://c8f41b59efa6290df76324339778b95b86bacb2592eda71fc2ed3dc1f3c1f0f1f04fa162e31768f9ab345f0f1e40f2d6a74014b29e24d550153f1c17075467ab@188.166.216.1:30303");
+
+Instruction 7
+
+cd c:\program files\mist
+mist --rpc http://35.196.75.192:8545 --swarmurl="http://swarm-gateways.net"
+
+Instruction 10
+
+mkdir godutch
+cd godutch
+truffle unbox webpack
+ls
+cd contracts
+sudo pico godutch.sol
+cd ..
+cd migrations
+sudo pico 2_deploy_contracts.js 
+
+var godutch = artifacts.require("./godutch.sol");
+module.exports = function(deployer) {
+deployer.deploy(godutch, ['Jack', 'Mark'], {gas: 4700000}); 
+};
+NOTE: gas is around 1378200 to execute this contracts
+
+cd ..
+sudo pico truffle.js
+sudo truffle console
+web3.eth.syncing
+compile
+web3.personal.unlockAccount('0x722536754b4505d9370a9a5eccc00fe3c8c6362b', 'verystrongpassword', 15000)
+web3.eth.getBalance('0x722536754b4505d9370a9a5eccc00fe3c8c6362b')
+.exit
+sudo pico truffle.js
+from:"0x722536754b4505d9370a9a5eccc00fe3c8c6362b"
+sudo truffle console
+migrate --reset
+
+Instruction 11
+godutch.deployed().then(function(contractInstance) {contractInstance.contribute('Mark', 40).then(function(v) {console.log(v)})})
+godutch.deployed().then(function(contractInstance) {contractInstance.contribute('Jack', 30).then(function(v) {console.log(v)})})
+godutch.deployed().then(function(contractInstance) {contractInstance.whatIsOurPool().then(function(v) {console.log(v)})})
+godutch.deployed().then(function(contractInstance) {contractInstance.contribute('Mark', 140).then(function(v) {console.log(v)})})
+godutch.deployed().then(function(contractInstance) {contractInstance.contribute('Jack', 430).then(function(v) {console.log(v)})})
+godutch.deployed().then(function(contractInstance) {contractInstance.whatIsOurPool().then(function(v) {console.log(v)})})
+godutch.deployed().then(function(contractInstance) {contractInstance.spend(230).then(function(v) {console.log(v)})})
+godutch.deployed().then(function(contractInstance) {contractInstance.whatIsOurPool().then(function(v) {console.log(v)})})
+godutch.deployed().then(function(contractInstance) {contractInstance.totalContrib('Jack').then(function(v) {console.log(v)})})
+godutch.deployed().then(function(contractInstance) {contractInstance.totalContrib('Mark').then(function(v) {console.log(v)})})
+godutch.deployed().then(function(contractInstance) {contractInstance.friendDetails('0x722536754b4505d9370a9a5eccc00fe3c8c6362b').then(function(v) {console.log(v)})})
+
+Instruction 13
+cd godutch
+cd app
+sudo pico index.html
+cd javascripts
+sudo pico app.js
+cd ..
+sudo npm run build
+cd /build
+sudo cp -a . /var/www/html/godutch
