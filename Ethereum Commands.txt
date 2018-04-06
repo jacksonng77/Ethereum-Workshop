@@ -97,7 +97,7 @@ Instruction 7
 cd c:\program files\mist
 mist --rpc http://35.196.75.192:8545 --swarmurl="http://swarm-gateways.net"
 
-If you are on ropsten: http://faucet.ropsten.be:3001/
+If you are on ropsten: http://faucet.ropsten.be:3001/ and https://faucet.bitfwd.xyz/
 If you are on Rinkeby: https://faucet.rinkeby.io/
 
 Instruction 10
